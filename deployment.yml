@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-dep-manmath
+  labels:
+    app: web-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+      - name: web-app
+        image: ghcr.io/manmath011/hello-world-ghcr:latest
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: ghcr-secret
+ 
